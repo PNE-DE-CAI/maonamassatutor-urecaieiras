@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio de Diagnóstica 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 11px; display: flex; flex-direction: column; align-items: center; padding: 20px; background-color: #f4f4f4; }
+        table { border-collapse: collapse; width: 100%; max-width: 900px; background-color: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #000; padding: 6px 8px; text-align: center; position: relative; }
+        .header-main { text-align: center; font-weight: bold; background-color: #f9f9f9; }
+        .header-sub { background-color: #eeeeee; font-weight: bold; }
+        
+        /* Cores de Status */
+        .proficiente { background-color: #c6efce; color: #006100; font-weight: bold; }
+        .basico { background-color: #ffeb9c; color: #9c6500; }
+        .abaixo-basico { background-color: #ffc7ce; color: #9c0006; }
+        
+        .footer-analysis { font-weight: bold; background-color: #f2f2f2; text-align: left; }
+        
+        /* Estilo dos Inputs */
+        .input-analise {
+            width: 40px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* Feedback Visual */
+        .feedback {
+            font-size: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .correto { border: 2px solid #28a745 !important; background-color: #eaffea; }
+        .errado { border: 2px solid #dc3545 !important; background-color: #ffeaea; }
+    </style>
+</head>
+<body>
+
+<table id="tabelaDados">
+    <thead>
+        <tr><th colspan="5" class="header-main">Base de Dados Oficial-BI DIAGNÓSTICA 2026</th></tr>
+        <tr class="header-sub">
+            <th>Estudante</th>
+            <th>LP - Aprendizagem equivalente</th>
+            <th>LP - Status</th>
+            <th>MAT - Aprendizagem equivalente</th>
+            <th>MAT - Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Estudante 1</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td></tr>
+        <tr><td>Estudante 2</td><td>4º ano</td><td class="basico">BÁSICO</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 3</td><td>3º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 4</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 5</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 6</td><td>4º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 7</td><td>3º ano</td><td class="basico">BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 8</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>1º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 9</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td></tr>
+        <tr><td>Estudante 10</td><td>4º ano</td><td class="basico">BÁSICO</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 11</td><td>3º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 12</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 13</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 14</td><td>4º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 15</td><td>3º ano</td><td class="basico">BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 16</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>1º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 17</td><td>1º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>1º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 18</td><td>4º ano</td><td class="basico">BÁSICO</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 19</td><td>3º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 20</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 21</td><td>1º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+        <tr><td>Estudante 22</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td><td>5º ano</td><td class="proficiente">PROFICIENTE</td></tr>
+        <tr><td>Estudante 23</td><td>4º ano</td><td class="basico">BÁSICO</td><td>4º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 24</td><td>3º ano</td><td class="basico">BÁSICO</td><td>3º ano</td><td class="basico">BÁSICO</td></tr>
+        <tr><td>Estudante 25</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td><td>2º ano</td><td class="abaixo-basico">ABAIXO DO BÁSICO</td></tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td rowspan="3" class="footer-analysis">ANÁLISE DOS ESTUDANTES</td>
+            <td class="header-sub">Componente</td>
+            <td class="abaixo-basico">ABAIXO DO BÁSICO 1º ao 2º</td>
+            <td class="basico">BÁSICO 3º ao 4º</td>
+            <td class="proficiente">PROFICIENTE 5º</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Língua Portuguesa</td>
+            <td><input type="number" class="input-analise" data-tipo="lp" data-status="abaixo"> <span class="feedback"></span></td>
+            <td><input type="number" class="input-analise" data-tipo="lp" data-status="basico"> <span class="feedback"></span></td>
+            <td><input type="number" class="input-analise" data-tipo="lp" data-status="proficiente"> <span class="feedback"></span></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">Matemática</td>
+            <td><input type="number" class="input-analise" data-tipo="mat" data-status="abaixo"> <span class="feedback"></span></td>
+            <td><input type="number" class="input-analise" data-tipo="mat" data-status="basico"> <span class="feedback"></span></td>
+            <td><input type="number" class="input-analise" data-tipo="mat" data-status="proficiente"> <span class="feedback"></span></td>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    // 1. Calcula os valores reais (gabarito)
+    const gabarito = {
+        lp: { abaixo: 0, basico: 0, proficiente: 0 },
+        mat: { abaixo: 0, basico: 0, proficiente: 0 }
+    };
+
+    function gerarGabarito() {
+        const linhas = document.querySelectorAll('#tabelaDados tbody tr');
+        linhas.forEach(linha => {
+            const lp = linha.cells[2].textContent.trim();
+            const mat = linha.cells[4].textContent.trim();
+            
+            if (lp === 'ABAIXO DO BÁSICO') gabarito.lp.abaixo++;
+            else if (lp === 'BÁSICO') gabarito.lp.basico++;
+            else if (lp === 'PROFICIENTE') gabarito.lp.proficiente++;
+
+            if (mat === 'ABAIXO DO BÁSICO') gabarito.mat.abaixo++;
+            else if (mat === 'BÁSICO') gabarito.mat.basico++;
+            else if (mat === 'PROFICIENTE') gabarito.mat.proficiente++;
+        });
+    }
+
+    // 2. Adiciona evento de escuta em cada input
+    document.querySelectorAll('.input-analise').forEach(input => {
+        input.addEventListener('input', function() {
+            const tipo = this.dataset.tipo; // lp ou mat
+            const status = this.dataset.status; // abaixo, basico ou proficiente
+            const valorDigitado = parseInt(this.value);
+            const valorCorreto = gabarito[tipo][status];
+            const feedbackSpan = this.nextElementSibling;
+
+            if (this.value === "") {
+                this.className = "input-analise";
+                feedbackSpan.textContent = "";
+                return;
+            }
+
+            if (valorDigitado === valorCorreto) {
+                this.className = "input-analise correto";
+                feedbackSpan.textContent = "⭐";
+            } else {
+                this.className = "input-analise errado";
+                feedbackSpan.textContent = "☹️";
+            }
+        });
+    });
+
+    window.onload = gerarGabarito;
+</script>
+
+</body>
+</html>

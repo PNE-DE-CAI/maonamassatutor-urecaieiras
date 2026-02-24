@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Perfis - URE-CAIEIRAS</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; padding: 20px; background-color: #f0f2f5; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; }
+        
+        .nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .btn-voltar { text-decoration: none; background: #34495e; color: white; padding: 8px 15px; border-radius: 4px; font-weight: bold; }
+
+        table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+        th, td { border: 1px solid #bdc3c7; padding: 8px; text-align: center; }
+        
+        .header-title { background-color: #f8f9fa; font-weight: bold; text-align: left; }
+        .status-abaixo { background-color: #ffc7ce; color: #9c0006; font-weight: bold; }
+        .status-basico { background-color: #ffeb9c; color: #9c6500; font-weight: bold; }
+        
+        .input-estudante { width: 50px; padding: 5px; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
+        .feedback { font-size: 18px; margin-left: 8px; display: inline-block; min-width: 25px; }
+        .correto { border: 2px solid #27ae60 !important; background-color: #e8f8f5; }
+        .errado { border: 2px solid #e74c3c !important; background-color: #fdedec; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-top">
+        <a href="index.html" class="btn-voltar">← Voltar ao Menu</a>
+        <h2>Mão na Massa: Identificando Perfis</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" class="header-title">PERFIS COM DEFASAGEM SEVERA (1º e 2º ano)</th>
+                <th class="status-abaixo">ABAIXO DO BÁSICO</th>
+            </tr>
+            <tr>
+                <th>Estudante (nº)</th>
+                <th>LP Eq.</th>
+                <th>LP Status</th>
+                <th>MAT Eq.</th>
+                <th>Destaque</th>
+            </tr>
+        </thead>
+        <tbody id="grupo-critico">
+            <script>
+                for(let i=0; i<9; i++) {
+                    document.write(`
+                        <tr>
+                            <td>E-<input type="number" class="input-estudante" data-grupo="critico"><span class="feedback"></span></td>
+                            <td>1º ou 2º ano</td>
+                            <td class="status-abaixo">ABAIXO</td>
+                            <td>1º ou 2º ano</td>
+                            <td style="text-align:left; color:#666">Alunos com defasagem severa/maior em LP ou MAT</td>
+                        </tr>
+                    `);
+                }
+            </script>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" class="header-title">PERFIS EM DESENVOLVIMENTO (3º e 4º ano)</th>
+                <th class="status-basico">BÁSICO</th>
+            </tr>
+            <tr>
+                <th>Estudante (nº)</th>
+                <th>LP Eq.</th>
+                <th>LP Status</th>
+                <th>MAT Eq.</th>
+                <th>Destaque</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                for(let i=0; i<12; i++) {
+                    document.write(`
+                        <tr>
+                            <td>E-<input type="number" class="input-estudante" data-grupo="basico"><span class="feedback"></span></td>
+                            <td>3º ou 4º ano</td>
+                            <td class="status-basico">BÁSICO</td>
+                            <td>3º ou 4º ano</td>
+                            <td style="text-align:left; color:#666">Defasagem padrão em MT & LP</td>
+                        </tr>
+                    `);
+                }
+            </script>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const gabarito = {
+        // Alunos que possuem 1º ano ou 2º ano em LP/MAT (conforme imagem)
+        critico: [4, 8, 12, 15, 16, 17, 20, 21, 25], 
+        // Alunos que estão no nível 3º ou 4º
+        basico: [2, 3, 6, 7, 10, 11, 14, 18, 19, 23, 24]
+    };
+
+    document.querySelectorAll('.input-estudante').forEach(input => {
+        input.addEventListener('input', function() {
+            const num = parseInt(this.value);
+            const gp = this.dataset.grupo;
+            const fb = this.nextElementSibling;
+            
+            if (this.value === "") { this.className = "input-estudante"; fb.textContent = ""; return; }
+
+            if (gabarito[gp].includes(num)) {
+                this.className = "input-estudante correto";
+                fb.textContent = "⭐";
+            } else {
+                this.className = "input-estudante errado";
+                fb.textContent = "☹️";
+            }
+        });
+    });
+</script>
+</body>
+</html>
